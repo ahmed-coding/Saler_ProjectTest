@@ -1,77 +1,85 @@
-﻿using System;
+﻿using DevExpress.XtraEditors;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
 
 namespace Saler_Project.Forms
 {
-    public partial class frm_Company : DevExpress.XtraEditors.XtraForm
+    public partial class frm_company : DevExpress.XtraEditors.XtraForm
     {
-        public frm_Company()
+
+
+        public frm_company()
         {
             InitializeComponent();
-            this.Load += Frm_Company_Load;
+            this.Load += Frm_company_Load;
         }
 
-        private void Frm_Company_Load(object sender, EventArgs e)
+        private void Frm_company_Load(object sender, EventArgs e)
         {
+            Scr.DBDataContext db;
+            Scr.Company company;
+            db = new Scr.DBDataContext();
+            company = db.Companies.FirstOrDefault();
+            if (company == null) return;
 
-            getData();
-            //company.name.ge
-            
+            txtAddress.Text = company.address;
+            txtName.Text = company.name;
+            txtPhone.Text = company.phone;
+
         }
 
-        private void btn_save_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            save();
 
-            saveData();
-            
         }
 
-        private void frm_Company_KeyDown(object sender, KeyEventArgs e)
+        private void frm_company_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F1)
             {
-                saveData();
+                save();
             }
         }
-        void getData()
+        void save()
         {
-            Scr.DBDataContext dbData = new Scr.DBDataContext();
-            Scr.Company company = new Scr.Company();
-            company = dbData.Companies.FirstOrDefault();
-            if (company == null) return;
-            txtName.Text = company.name;
-            txtPhone.Text = company.phone;
-            txtAddress.Text = company.address;
-        }
-        void saveData()
-        {
-                if (txtName.Text.Trim() == string.Empty || txtAddress.Text.Trim() == string.Empty || txtPhone.Text.Trim() == string.Empty)
-                {
-                    XtraMessageBox.Show("هناك حقل فارغ يرجئ تعبئة الحقول", "خطاء");
-                    return;
-                }
-                Scr.DBDataContext dbData = new Scr.DBDataContext();
-                Scr.Company company = dbData.Companies.FirstOrDefault();
-            if (company == null) {
+            Scr.DBDataContext db = new Scr.DBDataContext();
+
+            Scr.Company company = db.Companies.FirstOrDefault();
+            if (company == null)
+            {
                 company = new Scr.Company();
-
-                dbData.Companies.InsertOnSubmit(company);
+                db.Companies.InsertOnSubmit(company);
             }
+            if (txtName.Text.Trim() == String.Empty)
+            {
+                txtName.ErrorText = "يرجاء ادخال اسم الشركة";
+                return;
+            }
+            else if (txtAddress.Text.Trim() == String.Empty)
+            {
+                txtAddress.ErrorText = "يرجاء ادخال عنوان الشركة";
+                return;
+            }
+            else if (txtPhone.Text.Trim() == String.Empty)
+            {
+                txtPhone.ErrorText = "يرجاء ادخال هاتف الشركة";
+                return;
+            }
+            company.name = txtName.Text;
+            company.phone = txtPhone.Text;
+            company.address = txtAddress.Text;
 
-                company.name = txtName.Text;
-                company.phone = txtPhone.Text;
-                company.address = txtAddress.Text;
-                dbData.SubmitChanges();
-                XtraMessageBox.Show("تم الحفظ بنجاح");
+            db.Companies.InsertOnSubmit(company);
+            db.SubmitChanges();
+            XtraMessageBox.Show(text: "تم الحفظ بنجاح");
         }
     }
-    
 }

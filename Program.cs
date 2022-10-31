@@ -17,7 +17,8 @@ namespace Saler_Project
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frm_Company());
+            Application.Run(new frm_storsList());
+            
         }
     }
 }

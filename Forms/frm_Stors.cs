@@ -1,89 +1,72 @@
-﻿using System;
+﻿using DevExpress.XtraEditors;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
 
 namespace Saler_Project.Forms
 {
-    public partial class frm_Stors : DevExpress.XtraEditors.XtraForm
+    public partial class frm_stors : DevExpress.XtraEditors.XtraForm
     {
         Scr.Stor stor;
-        public frm_Stors()
+        public frm_stors()
         {
             InitializeComponent();
             New();
         }
-        public frm_Stors(int id)
+        public frm_stors(int id)
         {
             InitializeComponent();
 
-            var db = new Scr.DBDataContext();
-            stor = db.Stors.Where(st => st.id == id).First();
-            get_data();
-
+            Scr.DBDataContext dB = new Scr.DBDataContext();
+            stor = dB.Stors.Where(s => s.id == id).First();
+            GetData();
         }
-        void save_data()
+
+        void save()
         {
-            if (textEdit1.Text.Trim() == string.Empty)
+            if (txtName.Text.Trim() == String.Empty)
             {
-                XtraMessageBox.Show("يرجئ ادخال اسم الفرع", "خطاء");
+                txtName.ErrorText = "يرجاء ادخال اسم المخزن"; 
                 return;
             }
-            var db = new Scr.DBDataContext();
-            if (stor.id== 0)
-                db.Stors.InsertOnSubmit(stor);
+            Scr.DBDataContext dB = new Scr.DBDataContext();
+            if (stor.id == 0)
+                dB.Stors.InsertOnSubmit(stor);
             else
-                db.Stors.Attach(stor);
-            set_data();
-            db.SubmitChanges();
-            XtraMessageBox.Show("تمت العملية بنجاح");
-        }
-        void get_data()
-        {
-            textEdit1.Text = stor.name;
-        }
-        void set_data()
-        {
+                dB.Stors.Attach(stor);
 
-            stor.name = textEdit1.Text;
+                set();
+            dB.SubmitChanges();
+            XtraMessageBox.Show(text: "تم الحفظ بنجاح");
+        }
+        void set()
+        {
+            stor.name = txtName.Text;
+        }
+        void GetData()
+        {
+            txtName.Text = stor.name;
         }
         void New()
         {
             stor = new Scr.Stor();
-            get_data();
-
+            GetData();
         }
+
         private void btnSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            save_data();
+            save();
         }
 
         private void btnNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             New();
-            save_data();
-        }
-
-        private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            Scr.DBDataContext db = new Scr.DBDataContext();
-
-
-            if(XtraMessageBox.Show(caption:"تاكيد الحذف ",text:"هل تريد الحذف ",buttons:MessageBoxButtons.YesNo ,icon:MessageBoxIcon.Warning) == DialogResult.Yes)
-            {
-                db.Stors.Attach(stor);
-                db.Stors.DeleteOnSubmit(stor);
-                db.SubmitChanges();
-                XtraMessageBox.Show("تم الحذف بنجاح");
-                this.Close();
-            }
-
 
         }
     }
