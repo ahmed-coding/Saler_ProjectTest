@@ -506,6 +506,8 @@ namespace Saler_Project.Scr
 		
 		private int _account_id;
 		
+		private bool _isCustomer;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -520,6 +522,8 @@ namespace Saler_Project.Scr
     partial void OnaddressChanged();
     partial void Onaccount_idChanging(int value);
     partial void Onaccount_idChanged();
+    partial void OnisCustomerChanging(bool value);
+    partial void OnisCustomerChanged();
     #endregion
 		
 		public Customer()
@@ -623,6 +627,26 @@ namespace Saler_Project.Scr
 					this._account_id = value;
 					this.SendPropertyChanged("account_id");
 					this.Onaccount_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isCustomer")]
+		public bool isCustomer
+		{
+			get
+			{
+				return this._isCustomer;
+			}
+			set
+			{
+				if ((this._isCustomer != value))
+				{
+					this.OnisCustomerChanging(value);
+					this.SendPropertyChanging();
+					this._isCustomer = value;
+					this.SendPropertyChanged("isCustomer");
+					this.OnisCustomerChanged();
 				}
 			}
 		}

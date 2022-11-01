@@ -69,5 +69,20 @@ namespace Saler_Project.Forms
             New();
 
         }
+
+        private void btnDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Scr.DBDataContext dB = new Scr.DBDataContext();
+            DialogResult result = XtraMessageBox.Show(text: "هل تريد الحذف ؟",caption:"تحذير !" ,buttons:MessageBoxButtons.OKCancel);
+            if (result == DialogResult.OK)
+            {
+                dB.Stors.Attach(stor);
+                dB.Stors.DeleteOnSubmit(stor);
+                dB.SubmitChanges();
+
+                XtraMessageBox.Show(text: "تم الحذف بنجاح");
+            }
+
+        }
     }
 }

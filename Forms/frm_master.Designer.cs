@@ -1,6 +1,6 @@
 ﻿namespace Saler_Project.Forms
 {
-    partial class frm_stors
+    partial class frm_master
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_stors));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_master));
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.btnSave = new DevExpress.XtraBars.BarButtonItem();
@@ -41,18 +41,7 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.txtName = new DevExpress.XtraEditors.TextEdit();
-            this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
-            this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager1
@@ -141,15 +130,15 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(461, 51);
+            this.barDockControlTop.Size = new System.Drawing.Size(706, 51);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 173);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 378);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(461, 20);
+            this.barDockControlBottom.Size = new System.Drawing.Size(706, 20);
             // 
             // barDockControlLeft
             // 
@@ -157,87 +146,32 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 51);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 122);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 327);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(461, 51);
+            this.barDockControlRight.Location = new System.Drawing.Point(706, 51);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 122);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 327);
             // 
-            // layoutControl1
-            // 
-            this.layoutControl1.Controls.Add(this.txtName);
-            this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.layoutControl1.Location = new System.Drawing.Point(0, 51);
-            this.layoutControl1.Name = "layoutControl1";
-            this.layoutControl1.OptionsView.RightToLeftMirroringApplied = true;
-            this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(461, 122);
-            this.layoutControl1.TabIndex = 4;
-            this.layoutControl1.Text = "layoutControl1";
-            // 
-            // txtName
-            // 
-            this.txtName.Location = new System.Drawing.Point(12, 12);
-            this.txtName.MenuManager = this.barManager1;
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(358, 22);
-            this.txtName.StyleController = this.layoutControl1;
-            this.txtName.TabIndex = 4;
-            // 
-            // Root
-            // 
-            this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.Root.GroupBordersVisible = false;
-            this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem1,
-            this.emptySpaceItem1});
-            this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(461, 122);
-            this.Root.TextVisible = false;
-            // 
-            // layoutControlItem1
-            // 
-            this.layoutControlItem1.Control = this.txtName;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(441, 26);
-            this.layoutControlItem1.Text = "اسم المخزن";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(67, 16);
-            // 
-            // emptySpaceItem1
-            // 
-            this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 26);
-            this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(441, 76);
-            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // frm_stors
+            // frm_master
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(461, 193);
-            this.Controls.Add(this.layoutControl1);
+            this.ClientSize = new System.Drawing.Size(706, 398);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.IconOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("frm_stors.IconOptions.LargeImage")));
-            this.Name = "frm_stors";
+            this.KeyPreview = true;
+            this.Name = "frm_master";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "اضافة /تعديل المخازن";
+            this.Text = "frm_master";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_master_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
-            this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -247,19 +181,14 @@
 
         private DevExpress.XtraBars.BarManager barManager1;
         private DevExpress.XtraBars.Bar bar1;
-        private DevExpress.XtraBars.BarButtonItem btnSave;
-        private DevExpress.XtraBars.BarButtonItem btnNew;
-        private DevExpress.XtraBars.BarButtonItem btnDelete;
         private DevExpress.XtraBars.Bar bar2;
         private DevExpress.XtraBars.Bar bar3;
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
-        private DevExpress.XtraLayout.LayoutControl layoutControl1;
-        private DevExpress.XtraEditors.TextEdit txtName;
-        private DevExpress.XtraLayout.LayoutControlGroup Root;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
+        private DevExpress.XtraBars.BarButtonItem btnSave;
+        private DevExpress.XtraBars.BarButtonItem btnNew;
+        private DevExpress.XtraBars.BarButtonItem btnDelete;
     }
 }

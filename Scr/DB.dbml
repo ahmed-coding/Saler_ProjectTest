@@ -27,6 +27,7 @@
       <Column Name="phone" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="address" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="account_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Member="isCustomer" Type="System.Boolean" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.Drawers" Member="Drawers">

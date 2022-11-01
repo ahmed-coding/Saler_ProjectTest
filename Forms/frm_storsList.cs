@@ -39,7 +39,20 @@ namespace Saler_Project.Forms
             id =Convert.ToInt32( gridView1.GetFocusedRowCellValue("id"));
             frm_stors frm = new frm_stors(id);
 
-            frm.Show();
+            frm.ShowDialog();
+            refresh();
+        }
+
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frm_stors frm = new frm_stors();
+            frm.ShowDialog();
+
+            refresh();
+        }
+
+        private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
             refresh();
         }
     }

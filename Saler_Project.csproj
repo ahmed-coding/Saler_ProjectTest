@@ -8,10 +8,11 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>Saler_Project</RootNamespace>
     <AssemblyName>Saler_Project</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +32,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Saler_Project.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Data.Desktop.v21.2, Version=21.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -62,6 +66,30 @@
     <Compile Include="Forms\frm_company.Designer.cs">
       <DependentUpon>frm_company.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frm_customerVendor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_customerVendor.Designer.cs">
+      <DependentUpon>frm_customerVendor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_drawer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_drawer.Designer.cs">
+      <DependentUpon>frm_drawer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_main.Designer.cs">
+      <DependentUpon>frm_main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_master.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_master.Designer.cs">
+      <DependentUpon>frm_master.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frm_stors.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,8 +109,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DB.dbml</DependentUpon>
     </Compile>
+    <Compile Include="SelasDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SelasDataSet2.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Forms\frm_company.resx">
       <DependentUpon>frm_company.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_customerVendor.resx">
+      <DependentUpon>frm_customerVendor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_drawer.resx">
+      <DependentUpon>frm_drawer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_main.resx">
+      <DependentUpon>frm_main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_master.resx">
+      <DependentUpon>frm_master.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_stors.resx">
       <DependentUpon>frm_stors.cs</DependentUpon>
@@ -111,11 +156,22 @@
     </Compile>
     <None Include="Scr\DB.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>DB.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>DB.designer.cs</LastGenOutput>
     </None>
     <None Include="Scr\DB.dbml.layout">
       <DependentUpon>DB.dbml</DependentUpon>
+    </None>
+    <None Include="SelasDataSet2.xsc">
+      <DependentUpon>SelasDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="SelasDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SelasDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SelasDataSet2.xss">
+      <DependentUpon>SelasDataSet2.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
