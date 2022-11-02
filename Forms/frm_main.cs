@@ -30,20 +30,44 @@ namespace Saler_Project.Forms
 
         public void openForm(string name)
         {
-
-            var ins = Assembly.GetExecutingAssembly().GetTypes().FirstOrDefault(x => x.Name == name);
-
-            if (ins != null)
+            Form frm = null;
+            switch (name)
             {
-
-                var frm = Activator.CreateInstance(ins) as Form;
-                if (Application.OpenForms[frm.Name] != null)
-                {
-                    frm = Application.OpenForms[frm.Name];
-                }
-                else 
+                case "frm_customer":
+                    frm = new frm_customerVendor(true);
                     frm.Show();
+                    break;
+                case "frm_vendor":
+                    frm = new frm_customerVendor(false);
+                    frm.Show();
+                    break;
+                default:
 
+                    break;
+            }
+
+            if (frm != null)
+            {
+                frm.Show();
+                return;
+            }
+            else
+            {
+                var ins = Assembly.GetExecutingAssembly().GetTypes().FirstOrDefault(x => x.Name == name);
+
+                if (ins != null)
+                {
+
+                    frm = Activator.CreateInstance(ins) as Form;
+                    if (Application.OpenForms[frm.Name] != null)
+                    {
+                        frm = Application.OpenForms[frm.Name];
+                    }
+                    else
+                        frm.Show();
+                    frm.BringToFront();
+
+                }
             }
         }
 

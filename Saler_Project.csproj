@@ -46,6 +46,7 @@
     <Reference Include="DevExpress.XtraGrid.v21.2, Version=21.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v21.2, Version=21.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraPrinting.v21.2, Version=21.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeList.v21.2, Version=21.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
@@ -60,6 +61,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\frm_prodect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_prodect.Designer.cs">
+      <DependentUpon>frm_prodect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_prodectCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_prodectCategory.Designer.cs">
+      <DependentUpon>frm_prodectCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frm_company.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +141,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_master.resx">
       <DependentUpon>frm_master.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_prodect.resx">
+      <DependentUpon>frm_prodect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_prodectCategory.resx">
+      <DependentUpon>frm_prodectCategory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_stors.resx">
       <DependentUpon>frm_stors.cs</DependentUpon>

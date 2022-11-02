@@ -12,29 +12,21 @@ namespace Saler_Project.Forms
 {
     public partial class frm_customerVendor : frm_master
     {
-        private bool isCustomer;
+         bool IsCustomer;
 
-        public bool IsCoustomer
-        {
-            get { return isCustomer; }
-            set { isCustomer = value; }
-        }
 
         Scr.Customer customer;
 
-        public frm_customerVendor()
-        {
-            InitializeComponent();
-        }
         public frm_customerVendor(bool isCustomer)
         {
             InitializeComponent();
-            IsCoustomer = this.isCustomer;
+             this.IsCustomer =isCustomer;
+            New();
         }
 
         private void frm_customerVendor_Load(object sender, EventArgs e)
         {
-            this.Text = (IsCoustomer) ? "عميل" : "مورد";
+            this.Text = (IsCustomer) ? "عميل" : "مورد";
         }
         public override void New()
         {
@@ -49,23 +41,67 @@ namespace Saler_Project.Forms
             txtAddress.Text = customer.address;
             base.GetData();
         }
-        public override void Save()
+        bool ValidataData()
         {
-            if(txtName.Text.Trim() == String.Empty)
+
+            if (txtName.Text.Trim() == String.Empty)
             {
                 txtName.ErrorText = "هذا الحقل مطلوب";
-                return;
-            }else if (txtAddress.Text.Trim() == string.Empty)
+                return false;
+            }
+            else if (txtAddress.Text.Trim() == string.Empty)
             {
                 txtAddress.ErrorText = "هذا الحقل مطلوب";
-                return;
+                return false;
             }
-            else if (txtPhone.Text.Trim()== string.Empty)
+            else if (txtPhone.Text.Trim() == string.Empty)
             {
                 txtPhone.ErrorText = "هذا الحقل مطلوب";
-                return ;
+                return false;
+            }
+            Scr.DBDataContext db = new Scr.DBDataContext();
+            
+            var obj = db.Customers.Where(x => x.name.Trim() == txtName.Text.Trim() && x.isCustomer == this.IsCustomer && x.id != customer.id);
+            if (obj.Count() > 0)
+            {
+                txtName.ErrorText = "هذا الاسم موجود مسبقآ";
+                return false;
             }
 
+            
+            return true;
+        }
+
+
+        public override void Save()
+        {
+
+
+            if (ValidataData() == false)    
+                return;
+
+            Scr.DBDataContext db = new Scr.DBDataContext();
+            Scr.Account account;
+
+            if (customer.id == 0)
+            {
+                db.Customers.InsertOnSubmit(customer);
+                account = new Scr.Account();
+                db.Accounts.InsertOnSubmit(account);
+            }
+
+            else
+            {
+                db.Customers.Attach(customer);
+                account = db.Accounts.Single(a => a.id == customer.account_id);
+            }
+
+
+            SetData();
+            account.name = customer.name;
+            db.SubmitChanges();
+            customer.account_id = account.id;
+            db.SubmitChanges();
             base.Save();
         }
         public override void SetData()
@@ -73,9 +109,9 @@ namespace Saler_Project.Forms
             customer.name = txtName.Text;
             customer.phone = txtPhone.Text;
             customer.address = txtAddress.Text;
+            customer.isCustomer = IsCustomer;
             
             base.SetData();
         }
-
     }
 }

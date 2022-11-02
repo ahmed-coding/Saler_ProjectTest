@@ -13,6 +13,7 @@ namespace Saler_Project.Forms
 {
     public partial class frm_master : DevExpress.XtraEditors.XtraForm
     {
+        public string errorText = "هذا الحقل مطلوب";
         public frm_master()
         {
             InitializeComponent();
@@ -25,6 +26,7 @@ namespace Saler_Project.Forms
         virtual public  void Save()
         {
             XtraMessageBox.Show(text: "تم الحفظ بنجاح", caption: "تمت العملية", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Information);
+            refreshData();
         }
         virtual public void Delete()
         {
@@ -35,6 +37,10 @@ namespace Saler_Project.Forms
 
         }
         virtual public void SetData()
+        {
+
+        }
+        virtual public void refreshData()
         {
 
         }

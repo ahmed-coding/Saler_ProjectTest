@@ -20,16 +20,6 @@
       <Column Name="address" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Customer" Member="Customers">
-    <Type Name="Customer">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="phone" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="address" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="account_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Member="isCustomer" Type="System.Boolean" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.Drawers" Member="Drawers">
     <Type Name="Drawer">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -79,28 +69,6 @@
       <Column Name="shippingAddress" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Prodect" Member="Prodects">
-    <Type Name="Prodect">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="code" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="type" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="descreption" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="is_active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="image" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Prodect_units" Member="Prodect_units">
-    <Type Name="Prodect_unit">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="prodect_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="unit_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="buyPress" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="sellPress" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="sellDiscount" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="barrCode" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.StoreLog" Member="StoreLogs">
     <Type Name="StoreLog">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -119,6 +87,48 @@
     <Type Name="Stor">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Customer" Member="Customers">
+    <Type Name="Customer">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="phone" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="address" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="account_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="isCustomer" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Prodect_Category" Member="Prodect_Categories">
+    <Type Name="Prodect_Category">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="parent_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="number" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Prodect" Member="Prodects">
+    <Type Name="Prodect">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="code" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="type" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="descreption" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="is_active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="image" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="category_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Prodect_units" Member="Prodect_units">
+    <Type Name="Prodect_unit">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="prodect_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="unit_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="vactor" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="buyPress" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="sellPress" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="sellDiscount" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="barrCode" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>
