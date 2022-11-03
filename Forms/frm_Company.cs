@@ -13,8 +13,8 @@ namespace Saler_Project.Forms
 {
     public partial class frm_company : DevExpress.XtraEditors.XtraForm
     {
-
-
+        Scr.Company company;
+        Scr.DBDataContext db;
         public frm_company()
         {
             InitializeComponent();
@@ -23,8 +23,8 @@ namespace Saler_Project.Forms
 
         private void Frm_company_Load(object sender, EventArgs e)
         {
-            Scr.DBDataContext db;
-            Scr.Company company;
+            
+            
             db = new Scr.DBDataContext();
             company = db.Companies.FirstOrDefault();
             if (company == null) return;
@@ -50,14 +50,17 @@ namespace Saler_Project.Forms
         }
         void save()
         {
-            Scr.DBDataContext db = new Scr.DBDataContext();
 
-            Scr.Company company = db.Companies.FirstOrDefault();
+           
             if (company == null)
             {
                 company = new Scr.Company();
                 db.Companies.InsertOnSubmit(company);
             }
+            //else
+            //{
+            //    db.Companies.Attach(company);
+            //}
             if (txtName.Text.Trim() == String.Empty)
             {
                 txtName.ErrorText = "يرجاء ادخال اسم الشركة";
@@ -77,7 +80,8 @@ namespace Saler_Project.Forms
             company.phone = txtPhone.Text;
             company.address = txtAddress.Text;
 
-            db.Companies.InsertOnSubmit(company);
+            //db.Companies.InsertOnSubmit(company);
+            
             db.SubmitChanges();
             XtraMessageBox.Show(text: "تم الحفظ بنجاح");
         }

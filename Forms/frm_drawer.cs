@@ -19,7 +19,20 @@ namespace Saler_Project.Forms
             InitializeComponent();
             New();
         }
+        public frm_drawer(int id)
+        {
+            InitializeComponent();
+            loadObject(id);
+        }
+        void loadObject(int id)
+        {
+            using (var db = new Scr.DBDataContext()) 
+            {
+                drawer = db.Drawers.Single(x => x.id == id);
+                GetData();
 
+            }
+        }
         private void frm_drawer_Load(object sender, EventArgs e)
         {
 

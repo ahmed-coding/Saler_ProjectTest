@@ -28,7 +28,7 @@ namespace Saler_Project.Forms
             }
         }
 
-        public void openForm(string name)
+        public static void openForm(string name)
         {
             Form frm = null;
             switch (name)
@@ -41,34 +41,38 @@ namespace Saler_Project.Forms
                     frm = new frm_customerVendor(false);
                     frm.Show();
                     break;
+                case "frm_vendorList":
+                    frm = new frm_customerVendorList(false);
+                    frm.Show();
+                    break;
+                case "frm_customerList":
+                    frm = new frm_customerVendorList(true);
+                    frm.Show();
+                    break;
                 default:
 
-                    break;
+                    var ins = Assembly.GetExecutingAssembly().GetTypes().FirstOrDefault(x => x.Name == name);
+
+                    if (ins != null)
+                    {
+
+                        frm = Activator.CreateInstance(ins) as Form;
+                        if (Application.OpenForms[frm.Name] != null)
+                        {
+                            frm = Application.OpenForms[frm.Name];
+                        }
+                        else
+                            frm.Show();
+
+                        frm.BringToFront();
+                    }
+                        break;
             }
 
             if (frm != null)
-            {
                 frm.Show();
-                return;
-            }
-            else
-            {
-                var ins = Assembly.GetExecutingAssembly().GetTypes().FirstOrDefault(x => x.Name == name);
 
-                if (ins != null)
-                {
-
-                    frm = Activator.CreateInstance(ins) as Form;
-                    if (Application.OpenForms[frm.Name] != null)
-                    {
-                        frm = Application.OpenForms[frm.Name];
-                    }
-                    else
-                        frm.Show();
-                    frm.BringToFront();
-
-                }
-            }
+            
         }
 
         private void accordionControlElement1_Click(object sender, EventArgs e)

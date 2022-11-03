@@ -23,8 +23,13 @@ namespace Saler_Project.Forms
              this.IsCustomer =isCustomer;
             New();
         }
+        public frm_customerVendor(int id)
+        {
+            InitializeComponent();
+            loadObject(id);
+        }
 
-        private void frm_customerVendor_Load(object sender, EventArgs e)
+            private void frm_customerVendor_Load(object sender, EventArgs e)
         {
             this.Text = (IsCustomer) ? "عميل" : "مورد";
         }
@@ -112,6 +117,16 @@ namespace Saler_Project.Forms
             customer.isCustomer = IsCustomer;
             
             base.SetData();
+        }
+        void loadObject(int id)
+        {
+            using (var db = new Scr.DBDataContext())
+            {
+                customer = db.Customers.Single(x => x.id == id);
+                this.IsCustomer= (bool)customer.isCustomer;
+                GetData();
+
+            }
         }
     }
 }

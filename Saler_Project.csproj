@@ -61,6 +61,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Master.cs" />
+    <Compile Include="Forms\frm_customerVendorList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_customerVendorList.Designer.cs">
+      <DependentUpon>frm_customerVendorList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_drawerList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_drawerList.Designer.cs">
+      <DependentUpon>frm_drawerList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frm_prodect.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,6 +116,12 @@
     <Compile Include="Forms\frm_master.Designer.cs">
       <DependentUpon>frm_master.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frm_prodectList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_prodectList.Designer.cs">
+      <DependentUpon>frm_prodectList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frm_stors.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,8 +152,14 @@
     <EmbeddedResource Include="Forms\frm_customerVendor.resx">
       <DependentUpon>frm_customerVendor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_customerVendorList.resx">
+      <DependentUpon>frm_customerVendorList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_drawer.resx">
       <DependentUpon>frm_drawer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_drawerList.resx">
+      <DependentUpon>frm_drawerList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_main.resx">
       <DependentUpon>frm_main.cs</DependentUpon>
@@ -147,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_prodectCategory.resx">
       <DependentUpon>frm_prodectCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_prodectList.resx">
+      <DependentUpon>frm_prodectList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_stors.resx">
       <DependentUpon>frm_stors.cs</DependentUpon>

@@ -10,6 +10,7 @@ using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.Grid;
+using static Saler_Project.Classes.Master;
 
 namespace Saler_Project.Forms
 {
@@ -17,21 +18,13 @@ namespace Saler_Project.Forms
     public partial class frm_prodect : Saler_Project.Forms.frm_master
     {
         //start Mempers
-        public enum ProdectType
-        {
-            Inventory,
-            Servise,
-        }
+      
         Scr.Prodect prodect;
         RepositoryItemLookUpEdit lookUpEdit = new RepositoryItemLookUpEdit();
         Scr.DBDataContext dBs = new Scr.DBDataContext();
         Scr.Prodect_unit unit = new Scr.Prodect_unit();
 
-        class ValueAndID
-        {
-            public int id { get; set; }
-            public string name { get; set; }
-        }
+
 
 
         //End Mempers
@@ -40,10 +33,18 @@ namespace Saler_Project.Forms
         public frm_prodect()
         {
             InitializeComponent();
+            //refreshData();
             New();
             this.Load += Frm_prodect_Load;
         }
-        
+
+        public frm_prodect(int id)
+        {
+            InitializeComponent();
+            //refreshData();
+            loadProdect(id);
+            
+        }
         private void Frm_prodect_Load(object sender, EventArgs e)
         {
             refreshData();
@@ -52,7 +53,7 @@ namespace Saler_Project.Forms
             
             lookUpCatedory.ProcessNewValue += LookUpCatedory_ProcessNewValue;
             lookUpCatedory.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            lookUpType.Properties.DataSource = new List<ValueAndID>() { new ValueAndID() { id = 0, name = "مخزني" }, new ValueAndID() { id = 1, name = "خدمي" } };
+            lookUpType.Properties.DataSource =prodectTypeList;
             lookUpType.Properties.DisplayMember = "name";
             lookUpType.Properties.ValueMember = "id";
 
@@ -163,6 +164,16 @@ namespace Saler_Project.Forms
 
 
         //start methods
+        void loadProdect(int id)
+        {
+            using (var db= new Scr.DBDataContext())
+            {
+                prodect = db.Prodects.Single(x => x.id == id);
+
+            }
+            this.Text = string.Format("بيانات صنف : {0}", prodect.name);
+            GetData();
+        }
         public override void New()
         {
             prodect = new Scr.Prodect()
@@ -171,7 +182,8 @@ namespace Saler_Project.Forms
             } ;
 
             base.New();
-            var data = gridView1.DataSource as BindingList<Scr.Prodect_unit>;
+            this.Text ="اضافة صنف جديد";
+           var data = gridView1.DataSource as BindingList<Scr.Prodect_unit>;
             var db =new Scr.DBDataContext();
             if (db.Units.Count() == 0)
             {
@@ -180,6 +192,23 @@ namespace Saler_Project.Forms
                 refreshData();
             }
             data.Add(new Scr.Prodect_unit() { vactor = 1, unit_id = db.Units.First().id,barrCode =getNewBarrCode() });
+        }
+        Image getImageFromByte(Byte[] bytArryay)
+        {
+            Image img;
+            try
+            {
+                Byte[] imgByte = bytArryay;
+                MemoryStream stream = new MemoryStream(imgByte,false);
+
+                img = Image.FromStream(stream);
+            }
+            catch (Exception)
+            {
+
+                img = null;
+            }
+            return img;
         }
         Byte[] getByteFromImage(Image img)
         {
@@ -213,10 +242,14 @@ namespace Saler_Project.Forms
             lookUpType.EditValue = prodect.type;
             memoEdit1.Text = prodect.descreption;
             checkEdit1.Checked = prodect.is_active;
+            if (prodect.image != null)
+                pictureEdit1.Image = getImageFromByte(prodect.image.ToArray());
+            else
+                pictureEdit1.Image = null;
 
-            
 
-            gridControl1.DataSource = dBs.Prodect_units.Where(x => x.prodect_id == prodect.id);
+
+                gridControl1.DataSource = dBs.Prodect_units.Where(x => x.prodect_id == prodect.id);
             base.GetData();
         }
         public override void SetData()
@@ -299,6 +332,7 @@ namespace Saler_Project.Forms
 
             dBs.SubmitChanges();
             base.Save();
+            this.Text = string.Format("بيانات صنف : {0}", prodect.name);
         }
         public override void refreshData()
         {
