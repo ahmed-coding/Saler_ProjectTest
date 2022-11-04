@@ -1,8 +1,10 @@
-﻿using System;
+﻿using DevExpress.XtraEditors;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Saler_Project.Classes
 {
@@ -22,6 +24,84 @@ namespace Saler_Project.Classes
         {
             Inventory,
             Servise,
+        }
+
+        public static List<ValueAndID> PartTypeList = new List<ValueAndID> {
+           new ValueAndID() { id = 0, name = "مورد" },
+           new ValueAndID() { id = 1, name = "عميل" }
+       };
+        public enum PartType
+        {
+            Vendor,
+            Customer,
+
+        }
+      public  static void initData(this LookUpEdit lkp, object dataSours)
+        {
+
+            initData(lkp, dataSours, "name", "id");
+
+        }
+       public static void initData(LookUpEdit lkp, object dataSours, string DisplayMember, string ValueMember)
+        {
+            lkp.Properties.DataSource = dataSours;
+            lkp.Properties.DisplayMember = DisplayMember;
+            lkp.Properties.ValueMember = ValueMember;
+            lkp.Properties.PopulateColumns();
+            lkp.Properties.Columns[ValueMember].Visible = false;
+        }
+        public static string errorText
+        {
+            get { return "هذا الحقب مطلوب"; }
+        }
+            
+                
+                
+        public static bool isTextValid(this TextEdit txt )
+        {
+            if(txt.Text.Trim() == string.Empty)
+            {
+                txt.ErrorText = errorText;
+                return false;
+            }
+            return true;
+
+        }
+        public static bool isEditValid(this LookUpEditBase lkp)
+        {
+            if (lkp.isInt() == false)
+            {
+                lkp.ErrorText = errorText;
+                return false;
+            }
+            return true;
+
+        }
+        public static bool isEditValidAndNotZero(this LookUpEditBase lkp)
+        {
+            if (lkp.isInt() == false || Convert.ToInt32(lkp.EditValue) == 0)
+            {
+                lkp.ErrorText = errorText;
+                return false;
+            }
+            return true;
+
+        }
+
+        public static bool isInt(this LookUpEditBase edit)
+        {
+            var v = edit.EditValue;
+            return (v is int || v is byte);
+        }
+        public static bool isDateValid(this DateEdit dt)
+        {
+            if(dt.DateTime.Year < 1950)
+            {
+                dt.ErrorText = errorText;
+                return false;
+
+            }
+            return true;
         }
     }
 

@@ -44,10 +44,18 @@ namespace Saler_Project.Forms
         {
 
         }
+        virtual public bool isDataValid()
+        {
+            return true;
+        }
 
         private void btnSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Save();
+
+            if (isDataValid())
+                btnSave.PerformClick();
+
+            else return;
         }
 
         private void btnNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

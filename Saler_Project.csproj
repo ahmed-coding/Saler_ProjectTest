@@ -74,6 +74,12 @@
     <Compile Include="Forms\frm_drawerList.Designer.cs">
       <DependentUpon>frm_drawerList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frm_invoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_invoice.Designer.cs">
+      <DependentUpon>frm_invoice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frm_prodect.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,6 +166,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_drawerList.resx">
       <DependentUpon>frm_drawerList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_invoice.resx">
+      <DependentUpon>frm_invoice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_main.resx">
       <DependentUpon>frm_main.cs</DependentUpon>

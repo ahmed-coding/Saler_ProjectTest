@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -8,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.Grid;
 using static Saler_Project.Classes.Master;
@@ -95,6 +97,33 @@ namespace Saler_Project.Forms
             gridView1.InvalidRowException += GridView1_InvalidRowException;
             gridView1.CellValueChanged += GridView1_CellValueChanged;
             gridView1.FocusedRowChanged += GridView1_FocusedRowChanged;
+
+            gridView1.CustomRowCellEditForEditing += GridView1_CustomRowCellEditForEditing;
+        }
+
+        private void GridView1_CustomRowCellEditForEditing(object sender, CustomRowCellEditEventArgs e)
+        {
+            if (e.Column.FieldName == nameof(unit.unit_id))
+            {
+                var ids = (((Collection<Scr.Prodect_unit>)gridView1.DataSource).Select(x => x.unit_id).ToList());
+                RepositoryItemLookUpEdit repo = new RepositoryItemLookUpEdit();
+                using (var db=new Scr.DBDataContext())
+                {
+                    var currentID = (Int32?)e.CellValue;
+                    ids.Remove(currentID ?? 0);
+                    repo.DataSource = db.Units.Where(x => ids.Contains(x.id) == false).ToList();
+                    repo.ValueMember = "id";
+                    repo.DisplayMember = "name";
+                    repo.PopulateColumns();
+                    repo.Columns["id"].Visible = false;
+                    repo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+                    repo.ProcessNewValue += LookUpEdit_ProcessNewValue;
+
+                    e.RepositoryItem = repo;
+                }
+
+
+            }
         }
 
         private void GridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
@@ -151,7 +180,9 @@ namespace Saler_Project.Forms
                     db.SubmitChanges();
                 }
                 ((List<Scr.Unit>)lookUpEdit.DataSource).Add(newobject);
+                ((List<Scr.Unit>) (((LookUpEdit)sender).Properties.DataSource)).Add(newobject);
                 e.Handled = true;
+
             }
         }
 
