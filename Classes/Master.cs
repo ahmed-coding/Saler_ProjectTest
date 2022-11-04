@@ -36,19 +36,47 @@ namespace Saler_Project.Classes
             Customer,
 
         }
-      public  static void initData(this LookUpEdit lkp, object dataSours)
+
+        public static List<ValueAndID> InvoiceTypeList = new List<ValueAndID> {
+           new ValueAndID() { id = (int)InvoiceType.Purchase , name = "مشتريات" },
+           new ValueAndID() { id = (int)InvoiceType.Sales , name = "مبيعات" },
+            new ValueAndID() { id = (int)InvoiceType.PurchaseReturn , name = "مردود مشتريات" },
+            new ValueAndID() { id = (int)InvoiceType.SalesReturn , name = "مردود مبيعات" },
+        };
+
+        public enum InvoiceType
         {
+            Purchase,
+            Sales,
+            PurchaseReturn,
+            SalesReturn,
 
+        }
+
+
+
+        public  static void initData(this LookUpEdit lkp, object dataSours)
+        {
             initData(lkp, dataSours, "name", "id");
-
         }
        public static void initData(LookUpEdit lkp, object dataSours, string DisplayMember, string ValueMember)
         {
             lkp.Properties.DataSource = dataSours;
             lkp.Properties.DisplayMember = DisplayMember;
             lkp.Properties.ValueMember = ValueMember;
-            lkp.Properties.PopulateColumns();
-            lkp.Properties.Columns[ValueMember].Visible = false;
+            //lkp.Properties.PopulateColumns();
+            //lkp.Properties.Columns[ValueMember].Visible = false;
+        }
+
+        public static void initData(this GridLookUpEdit lkp, object dataSours)
+        {
+            initData(lkp, dataSours, "name", "id");
+        }
+        public static void initData(GridLookUpEdit lkp, object dataSours, string DisplayMember, string ValueMember)
+        {
+            lkp.Properties.DataSource = dataSours;
+            lkp.Properties.DisplayMember = DisplayMember;
+            lkp.Properties.ValueMember = ValueMember;
         }
         public static string errorText
         {

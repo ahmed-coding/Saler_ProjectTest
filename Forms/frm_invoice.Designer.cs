@@ -189,9 +189,9 @@
             // 
             // mesSippingAddress
             // 
-            this.mesSippingAddress.Location = new System.Drawing.Point(1017, 560);
+            this.mesSippingAddress.Location = new System.Drawing.Point(1029, 706);
             this.mesSippingAddress.Name = "mesSippingAddress";
-            this.mesSippingAddress.Size = new System.Drawing.Size(164, 38);
+            this.mesSippingAddress.Size = new System.Drawing.Size(164, 22);
             this.mesSippingAddress.StyleController = this.layoutControl1;
             this.mesSippingAddress.TabIndex = 23;
             // 
@@ -327,7 +327,7 @@
             // 
             // chkPOstToStor
             // 
-            this.chkPOstToStor.Location = new System.Drawing.Point(1017, 498);
+            this.chkPOstToStor.Location = new System.Drawing.Point(1029, 576);
             this.chkPOstToStor.Name = "chkPOstToStor";
             this.chkPOstToStor.Properties.Caption = "مرحل في المخزن";
             this.chkPOstToStor.Size = new System.Drawing.Size(251, 24);
@@ -337,7 +337,7 @@
             // dtPostIDdate
             // 
             this.dtPostIDdate.EditValue = null;
-            this.dtPostIDdate.Location = new System.Drawing.Point(1017, 526);
+            this.dtPostIDdate.Location = new System.Drawing.Point(1029, 604);
             this.dtPostIDdate.Name = "dtPostIDdate";
             this.dtPostIDdate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -349,7 +349,7 @@
             // 
             // meNote
             // 
-            this.meNote.Location = new System.Drawing.Point(1017, 462);
+            this.meNote.Location = new System.Drawing.Point(1029, 500);
             this.meNote.Name = "meNote";
             this.meNote.Size = new System.Drawing.Size(251, 22);
             this.meNote.StyleController = this.layoutControl1;
@@ -369,7 +369,7 @@
             // dt_DelivaryDate
             // 
             this.dt_DelivaryDate.EditValue = null;
-            this.dt_DelivaryDate.Location = new System.Drawing.Point(1017, 534);
+            this.dt_DelivaryDate.Location = new System.Drawing.Point(1029, 680);
             this.dt_DelivaryDate.Name = "dt_DelivaryDate";
             this.dt_DelivaryDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -661,24 +661,23 @@
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(1005, 558);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(1005, 732);
             this.emptySpaceItem1.MaxSize = new System.Drawing.Size(350, 0);
             this.emptySpaceItem1.MinSize = new System.Drawing.Size(250, 1);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(279, 256);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(279, 82);
             this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlGroup4
             // 
             this.layoutControlGroup4.ExpandButtonVisible = true;
-            this.layoutControlGroup4.Expanded = false;
             this.layoutControlGroup4.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem20,
             this.layoutControlItem5});
-            this.layoutControlGroup4.Location = new System.Drawing.Point(1005, 522);
+            this.layoutControlGroup4.Location = new System.Drawing.Point(1005, 630);
             this.layoutControlGroup4.Name = "layoutControlGroup4";
-            this.layoutControlGroup4.Size = new System.Drawing.Size(279, 36);
+            this.layoutControlGroup4.Size = new System.Drawing.Size(279, 102);
             this.layoutControlGroup4.Text = "الشحن";
             // 
             // layoutControlItem20
@@ -686,7 +685,7 @@
             this.layoutControlItem20.Control = this.mesSippingAddress;
             this.layoutControlItem20.Location = new System.Drawing.Point(0, 26);
             this.layoutControlItem20.Name = "layoutControlItem20";
-            this.layoutControlItem20.Size = new System.Drawing.Size(255, 42);
+            this.layoutControlItem20.Size = new System.Drawing.Size(255, 26);
             this.layoutControlItem20.Text = "عنوان الشحن";
             this.layoutControlItem20.TextSize = new System.Drawing.Size(75, 16);
             // 
@@ -702,13 +701,12 @@
             // layoutControlGroup2
             // 
             this.layoutControlGroup2.ExpandButtonVisible = true;
-            this.layoutControlGroup2.Expanded = false;
             this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem9,
             this.layoutControlItem8});
-            this.layoutControlGroup2.Location = new System.Drawing.Point(1005, 486);
+            this.layoutControlGroup2.Location = new System.Drawing.Point(1005, 526);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(279, 36);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(279, 104);
             this.layoutControlGroup2.Text = "الترحيل والمخزون";
             // 
             // layoutControlItem9
@@ -732,12 +730,11 @@
             // layoutControlGroup5
             // 
             this.layoutControlGroup5.ExpandButtonVisible = true;
-            this.layoutControlGroup5.Expanded = false;
             this.layoutControlGroup5.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem7});
             this.layoutControlGroup5.Location = new System.Drawing.Point(1005, 450);
             this.layoutControlGroup5.Name = "layoutControlGroup5";
-            this.layoutControlGroup5.Size = new System.Drawing.Size(279, 36);
+            this.layoutControlGroup5.Size = new System.Drawing.Size(279, 76);
             this.layoutControlGroup5.Text = "الملاحظات";
             // 
             // layoutControlItem7

@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.Grid;
 using static Saler_Project.Classes.Master;
+using  Saler_Project.Classes;
 
 
 namespace Saler_Project.Forms
@@ -24,7 +25,8 @@ namespace Saler_Project.Forms
 
         private void frm_prodectList_Load(object sender, EventArgs e)
         {
-            refreshData();
+
+            Session.prodects.ListChanged += Prodects_ListChanged;
             btnSave.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             btnDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
 
@@ -33,8 +35,10 @@ namespace Saler_Project.Forms
 
             gridView1.DoubleClick += GridView1_DoubleClick;
             this.Text = "قائمة الاصناف";
+            refreshData();
             gridControl1.ViewRegistered += GridControl1_ViewRegistered;
             gridView1.OptionsDetail.ShowDetailTabs = false;
+            
         }
 
         private void GridControl1_ViewRegistered(object sender, DevExpress.XtraGrid.ViewOperationEventArgs e)
@@ -61,7 +65,7 @@ namespace Saler_Project.Forms
             if(int.TryParse(gridView1.GetFocusedRowCellValue("id").ToString(),out id)&& id>0)
             {
                 var frm = new frm_prodect(id);
-                frm.ShowDialog();
+                frm.Show();
                 refreshData();
             }
         }
@@ -76,8 +80,8 @@ namespace Saler_Project.Forms
         public override void New()
         {
             var frm = new frm_prodect();
-            frm.ShowDialog();
-            refreshData();
+            frm.Show();
+            
 
             base.New();
         }
@@ -85,10 +89,10 @@ namespace Saler_Project.Forms
         public override void refreshData()
         {
             var frm = new frm_prodect();
-
+            
             using (var db = new Scr.DBDataContext())
             {
-               var data= from pr in db.Prodects 
+               var data= from pr in Session.prodects 
                                           join cg in db.Prodect_Categories on pr.category_id equals cg.id
                                           select new {
                     pr.id,
@@ -98,15 +102,19 @@ namespace Saler_Project.Forms
                    pr.descreption,
                    pr.is_active,
                    pr.type,
-                   UOM= db.Prodect_units.Where(x=> x.prodect_id ==pr.id).Select(u=> new
-                   {
-                       UnitName=db.Units.Single(un=> un.id == u.unit_id).name,
-                       u.vactor,
-                       u.sellPress,
-                       u.buyPress,
-                       u.sellDiscount,
-                       u.barrCode,
-                   }).ToList(),
+                   //UOM= db.Prodect_units.Where(x=> x.prodect_id ==pr.id).Select(u=> new
+                   UOM=(from u in db.Prodect_units where u.prodect_id == pr.id 
+                        join un in db.Units on u.unit_id equals un.id
+                        select new
+                        {
+                            UnitName =/* db.Units.Single(un => un.id == u.unit_id).name,*/ un.name,
+                            u.vactor,
+                            u.sellPress,
+                            u.buyPress,
+                            u.sellDiscount,
+                            u.barrCode,
+                        }).ToList(),
+               
                 
 
                    
@@ -126,6 +134,11 @@ namespace Saler_Project.Forms
             }
 
             base.refreshData();
+        }
+
+        private void Prodects_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            refreshData();
         }
     }
 }
