@@ -37,9 +37,9 @@ namespace Saler_Project.Forms
             this.Text = "قائمة الاصناف";
             refreshData();
             gridControl1.ViewRegistered += GridControl1_ViewRegistered;
-            gridView1.OptionsDetail.ShowDetailTabs = false;
-            
+            gridView1.OptionsDetail.ShowDetailTabs = false;  
         }
+
 
         private void GridControl1_ViewRegistered(object sender, DevExpress.XtraGrid.ViewOperationEventArgs e)
         {
@@ -92,7 +92,7 @@ namespace Saler_Project.Forms
             
             using (var db = new Scr.DBDataContext())
             {
-               var data= from pr in Session.prodects 
+               var data= from pr in db.Prodects 
                                           join cg in db.Prodect_Categories on pr.category_id equals cg.id
                                           select new {
                     pr.id,

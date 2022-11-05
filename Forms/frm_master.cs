@@ -53,7 +53,8 @@ namespace Saler_Project.Forms
         {
 
             if (isDataValid())
-                btnSave.PerformClick();
+                //btnSave.PerformClick();
+                Save();
 
             else return;
         }

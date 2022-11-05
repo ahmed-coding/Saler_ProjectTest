@@ -9,7 +9,7 @@ namespace Saler_Project.Classes
 {
     internal static class Session
     {
-        public static int DefualtDrawer { get => 3; }
+        public static int DefualtDrawer { get => 6; }
         public static int DefualCustomer { get => 1; }
         public static int DefualtVendor { get => 3; }
         public static int DefualtStor { get => 3; }
@@ -46,9 +46,9 @@ namespace Saler_Project.Classes
                     {
                         _vendor = new BindingList<Scr.Customer>(db.Customers.Where(x=> x.isCustomer ==false).ToList());
                     }
-                    //DataBaseWatcher.prodects = new TableDependency.SqlClient.SqlTableDependency<Scr.Prodect>(Properties.Settings.Default.SelasConnectionString);
-                    //DataBaseWatcher.prodects.OnChanged += DataBaseWatcher.Prodect_Changed;
-                    //DataBaseWatcher.prodects.Start();
+                    DataBaseWatcher.vendor = new  TableDependency.SqlClient.SqlTableDependency<Scr.Customer>(Properties.Settings.Default.SelasConnectionString);
+                    DataBaseWatcher.vendor.OnChanged += DataBaseWatcher.Vendor_Changed;
+                    //DataBaseWatcher.vendor.Start();
                 }
                 return _vendor;
             }

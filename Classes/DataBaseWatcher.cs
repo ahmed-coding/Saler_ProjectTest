@@ -36,10 +36,33 @@ namespace Saler_Project.Classes
                 }
             }));
            
-            Task.Run(new Action(() =>
-            {
+       }
 
+        public static SqlTableDependency<Scr.Customer> vendor;
+        public static void Vendor_Changed(object sender, RecordChangedEventArgs<Scr.Customer> e)
+        {
+            Application.OpenForms[0].Invoke(new Action(() =>
+            {
+                switch (e.ChangeType)
+                {
+                    case ChangeType.None:
+                        break;
+                    case ChangeType.Delete:
+                        Session.vendors.Remove(Session.vendors.Single(x => x.id == e.Entity.id));
+                        break;
+                    case ChangeType.Insert:
+                        Session.vendors.Add(e.Entity);
+                        break;
+                    case ChangeType.Update:
+                        var index = Session.vendors.IndexOf(Session.vendors.Single(x => x.id == e.Entity.id));
+                        Session.vendors.Remove(Session.vendors.Single(x => x.id == e.Entity.id));
+                        Session.vendors.Add(e.Entity);
+                        break;
+                    default:
+                        break;
+                }
             }));
+
         }
 
 

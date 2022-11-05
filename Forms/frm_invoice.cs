@@ -68,13 +68,10 @@ namespace Saler_Project.Forms
             if (lkpPartType.isInt())
             {
                 int pars = Convert.ToInt32(lkpPartType.EditValue);
-
                 if (pars == (int)PartType.Customer)
                     glkpPartID.initData(Session.customer);
                 else if (pars == (int)PartType.Vendor)
                     glkpPartID.initData(Session.vendors);
-
-
             }
         }
 

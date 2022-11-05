@@ -12,6 +12,7 @@ using DevExpress.Utils;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using Saler_Project.Classes;
 using static Saler_Project.Classes.Master;
 namespace Saler_Project.Forms
 {
@@ -30,16 +31,23 @@ namespace Saler_Project.Forms
 
             private void Frm_customerVendorList_Load(object sender, EventArgs e)
         {
-            
+        
             gridView1.Columns["id"].Visible = false;
             gridView1.Columns["name"].Caption = "الاسم";
             gridView1.Columns["phone"].Caption = "الهاتف";
             gridView1.Columns["address"].Caption = "العنوان";
             gridView1.Columns["account_id"].Caption = "رقم الحساب";
             gridView1.Columns["isCustomer"].Visible = false;
-            gridView1.OptionsBehavior.Editable = false;
 
+            gridView1.OptionsBehavior.Editable = false;
             gridView1.DoubleClick += GridView1_DoubleClick;
+            Session.vendors.ListChanged += Vendors_ListChanged;
+        }
+        
+
+        private void Vendors_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            refreshData();
         }
 
         private void GridView1_DoubleClick(object sender, EventArgs e)
@@ -59,7 +67,7 @@ namespace Saler_Project.Forms
         {
             using (var db = new Scr.DBDataContext())
             {
-                gridControl1.DataSource = db.Customers.Where(x=> x.isCustomer == this.isCustomer).ToList();
+                gridControl1.DataSource =db.Customers.Where(x=> x.isCustomer == isCustomer).ToList();
 
 
             }
