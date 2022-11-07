@@ -49,6 +49,10 @@ namespace Saler_Project.Forms
                     frm = new frm_customerVendorList(true);
                     frm.Show();
                     break;
+                case "frm_PurchaseInvoice":
+                    frm = new frm_invoice(Classes.Master.InvoiceType.Purchase);
+                    frm.Show();
+                    break;
                 default:
 
                     var ins = Assembly.GetExecutingAssembly().GetTypes().FirstOrDefault(x => x.Name == name);

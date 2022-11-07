@@ -25,8 +25,8 @@ namespace Saler_Project.Forms
 
         private void frm_prodectList_Load(object sender, EventArgs e)
         {
-
-            Session.prodects.ListChanged += Prodects_ListChanged;
+            Session session = new Session();
+            session.ProdectView.ListChanged += Prodects_ListChanged;
             btnSave.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             btnDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
 
@@ -37,7 +37,15 @@ namespace Saler_Project.Forms
             this.Text = "قائمة الاصناف";
             refreshData();
             gridControl1.ViewRegistered += GridControl1_ViewRegistered;
-            gridView1.OptionsDetail.ShowDetailTabs = false;  
+            gridView1.OptionsDetail.ShowDetailTabs = false;
+
+
+            this.Activated += Frm_prodectList_Activated;
+        }
+
+        private void Frm_prodectList_Activated(object sender, EventArgs e)
+        {
+            refreshData();
         }
 
 
@@ -86,51 +94,48 @@ namespace Saler_Project.Forms
             base.New();
         }
 
-        public override void refreshData()
+        public override async void refreshData()
         {
-            var frm = new frm_prodect();
-            
+
             using (var db = new Scr.DBDataContext())
             {
-               var data= from pr in db.Prodects 
-                                          join cg in db.Prodect_Categories on pr.category_id equals cg.id
-                                          select new {
-                    pr.id,
-                    pr.name,
-                    pr.code,
-                   CategoryName= cg.name,
-                   pr.descreption,
-                   pr.is_active,
-                   pr.type,
-                   //UOM= db.Prodect_units.Where(x=> x.prodect_id ==pr.id).Select(u=> new
-                   UOM=(from u in db.Prodect_units where u.prodect_id == pr.id 
-                        join un in db.Units on u.unit_id equals un.id
-                        select new
-                        {
-                            UnitName =/* db.Units.Single(un => un.id == u.unit_id).name,*/ un.name,
-                            u.vactor,
-                            u.sellPress,
-                            u.buyPress,
-                            u.sellDiscount,
-                            u.barrCode,
-                        }).ToList(),
-               
-                
-
-                   
-                } ;
+                var data = from pr in db.Prodects
+                           join cg in db.Prodect_Categories on pr.category_id equals cg.id
+                           select new
+                           {
+                               pr.id,
+                               pr.name,
+                               pr.code,
+                               CategoryName = cg.name,
+                               pr.descreption,
+                               pr.is_active,
+                               pr.type,
+                               //UOM= db.Prodect_units.Where(x=> x.prodect_id ==pr.id).Select(u=> new
+                               UOM = (from u in db.Prodect_units
+                                      where u.prodect_id == pr.id
+                                      join un in db.Units on u.unit_id equals un.id
+                                      select new
+                                      {
+                                          UnitName =/* db.Units.Single(un => un.id == u.unit_id).name,*/ un.name,
+                                          u.vactor,
+                                          u.sellPress,
+                                          u.buyPress,
+                                          u.sellDiscount,
+                                          u.barrCode,
+                                      }).ToList(),
+                           };
 
                 gridControl1.DataSource = data;
-                var ins = data.FirstOrDefault();
-                gridView1.Columns[nameof(ins.CategoryName)].Caption = "الفئة";
-                gridView1.Columns[nameof(ins.code)].Caption = "الكود";
+            //gridControl1.DataSource = Session.ProdectView;
+            var ins = new Scr.Prodect();
+            //var ins = new Session.ProdectViewClass();
+            //gridView1.Columns[nameof(ins.CategoryName)].Caption = "الفئة";
+            gridView1.Columns[nameof(ins.code)].Caption = "الكود";
                 gridView1.Columns[nameof(ins.is_active)].Caption = "نشط";
                 gridView1.Columns[nameof(ins.descreption)].Caption = "الوصف";
                 gridView1.Columns[nameof(ins.name)].Caption = "الاسم";
                 gridView1.Columns[nameof(ins.type)].Caption = "النوع";
                 gridView1.Columns[nameof(ins.id)].Visible = false;
-
-
             }
 
             base.refreshData();
@@ -141,4 +146,6 @@ namespace Saler_Project.Forms
             refreshData();
         }
     }
-}
+
+
+    }

@@ -400,31 +400,7 @@ namespace Saler_Project.Forms
 
         }
 
-        string getNextCode( string code)
-        {
-            if (code == string.Empty || code == null) return "1";
-
-            string str1 = "";
-            foreach (char item in code)
-            {
-                str1 = char.IsDigit(item) ? str1 + item.ToString() : "";
-            }
-
-            if (str1 == string.Empty) return code + "1";
-
-
-            string str2 = str1.Insert(0, "1");
-            str2 = (Convert.ToUInt32(str2)+1).ToString();
-
-         string  str3 = str2[0] == '1' ? str2.Remove(0, 1) : str2.Remove(0, 1).Insert(0,"1");
-
-            int index = code.LastIndexOf(str1);
-            code = code.Remove(index);
-
-            code = code.Insert(index, str3);
-
-            return code;
-        }
+        
 
         Boolean checkBarrcode(string barrCode  ,int id)
         {
