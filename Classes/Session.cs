@@ -9,6 +9,25 @@ namespace Saler_Project.Classes
 {
     internal  class Session
     {
+        public static class CurrentUser
+        {
+            private static UserSettingsTemplate _userSettings;
+            public static UserSettingsTemplate Settings
+            {
+                get
+                {
+                    if (_userSettings == null)
+                    {
+                        _userSettings = new UserSettingsTemplate();
+                    }
+
+                    return _userSettings;
+                }
+            } 
+ 
+        }
+
+
         public static int DefualtDrawer { get => 6; }
         public static int DefualCustomer { get => 1; }
         public static int DefualtVendor { get => 3; }
@@ -245,6 +264,20 @@ namespace Saler_Project.Classes
 
             //              };
 
+        }
+        private static BindingList<Scr.UserSettingsProfilePropertie> _profileProperties;
+        public static BindingList<Scr.UserSettingsProfilePropertie> profileProperties { get
+            {
+                if (_profileProperties == null)
+                {
+                    using (var db = new Scr.DBDataContext())
+                    {
+                        _profileProperties = new BindingList<Scr.UserSettingsProfilePropertie>(db.UserSettingsProfileProperties.ToList());
+
+                    }
+                }
+                return _profileProperties;
+            }
         }
     }
 }

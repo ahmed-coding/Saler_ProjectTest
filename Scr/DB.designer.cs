@@ -66,6 +66,15 @@ namespace Saler_Project.Scr
     partial void InsertProdect_unit(Prodect_unit instance);
     partial void UpdateProdect_unit(Prodect_unit instance);
     partial void DeleteProdect_unit(Prodect_unit instance);
+    partial void InsertUser(User instance);
+    partial void UpdateUser(User instance);
+    partial void DeleteUser(User instance);
+    partial void InsertUserSettingsProfilePropertie(UserSettingsProfilePropertie instance);
+    partial void UpdateUserSettingsProfilePropertie(UserSettingsProfilePropertie instance);
+    partial void DeleteUserSettingsProfilePropertie(UserSettingsProfilePropertie instance);
+    partial void InsertUserSettingsProfile(UserSettingsProfile instance);
+    partial void UpdateUserSettingsProfile(UserSettingsProfile instance);
+    partial void DeleteUserSettingsProfile(UserSettingsProfile instance);
     #endregion
 		
 		public DBDataContext() : 
@@ -191,6 +200,30 @@ namespace Saler_Project.Scr
 			get
 			{
 				return this.GetTable<Prodect_unit>();
+			}
+		}
+		
+		public System.Data.Linq.Table<User> Users
+		{
+			get
+			{
+				return this.GetTable<User>();
+			}
+		}
+		
+		public System.Data.Linq.Table<UserSettingsProfilePropertie> UserSettingsProfileProperties
+		{
+			get
+			{
+				return this.GetTable<UserSettingsProfilePropertie>();
+			}
+		}
+		
+		public System.Data.Linq.Table<UserSettingsProfile> UserSettingsProfiles
+		{
+			get
+			{
+				return this.GetTable<UserSettingsProfile>();
 			}
 		}
 	}
@@ -2618,6 +2651,456 @@ namespace Saler_Project.Scr
 					this._barrCode = value;
 					this.SendPropertyChanged("barrCode");
 					this.OnbarrCodeChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
+	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _name;
+		
+		private string _username;
+		
+		private string _password;
+		
+		private byte _userType;
+		
+		private int _settingsProfile_id;
+		
+		private System.Nullable<int> _screenProfile_id;
+		
+		private bool _isActive;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    partial void OnusernameChanging(string value);
+    partial void OnusernameChanged();
+    partial void OnpasswordChanging(string value);
+    partial void OnpasswordChanged();
+    partial void OnuserTypeChanging(byte value);
+    partial void OnuserTypeChanged();
+    partial void OnsettingsProfile_idChanging(int value);
+    partial void OnsettingsProfile_idChanged();
+    partial void OnscreenProfile_idChanging(System.Nullable<int> value);
+    partial void OnscreenProfile_idChanged();
+    partial void OnisActiveChanging(bool value);
+    partial void OnisActiveChanged();
+    #endregion
+		
+		public User()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_username", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string username
+		{
+			get
+			{
+				return this._username;
+			}
+			set
+			{
+				if ((this._username != value))
+				{
+					this.OnusernameChanging(value);
+					this.SendPropertyChanging();
+					this._username = value;
+					this.SendPropertyChanged("username");
+					this.OnusernameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_password", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string password
+		{
+			get
+			{
+				return this._password;
+			}
+			set
+			{
+				if ((this._password != value))
+				{
+					this.OnpasswordChanging(value);
+					this.SendPropertyChanging();
+					this._password = value;
+					this.SendPropertyChanged("password");
+					this.OnpasswordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userType", DbType="TinyInt NOT NULL")]
+		public byte userType
+		{
+			get
+			{
+				return this._userType;
+			}
+			set
+			{
+				if ((this._userType != value))
+				{
+					this.OnuserTypeChanging(value);
+					this.SendPropertyChanging();
+					this._userType = value;
+					this.SendPropertyChanged("userType");
+					this.OnuserTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_settingsProfile_id", DbType="Int NOT NULL")]
+		public int settingsProfile_id
+		{
+			get
+			{
+				return this._settingsProfile_id;
+			}
+			set
+			{
+				if ((this._settingsProfile_id != value))
+				{
+					this.OnsettingsProfile_idChanging(value);
+					this.SendPropertyChanging();
+					this._settingsProfile_id = value;
+					this.SendPropertyChanged("settingsProfile_id");
+					this.OnsettingsProfile_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_screenProfile_id", DbType="Int")]
+		public System.Nullable<int> screenProfile_id
+		{
+			get
+			{
+				return this._screenProfile_id;
+			}
+			set
+			{
+				if ((this._screenProfile_id != value))
+				{
+					this.OnscreenProfile_idChanging(value);
+					this.SendPropertyChanging();
+					this._screenProfile_id = value;
+					this.SendPropertyChanged("screenProfile_id");
+					this.OnscreenProfile_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isActive", DbType="Bit NOT NULL")]
+		public bool isActive
+		{
+			get
+			{
+				return this._isActive;
+			}
+			set
+			{
+				if ((this._isActive != value))
+				{
+					this.OnisActiveChanging(value);
+					this.SendPropertyChanging();
+					this._isActive = value;
+					this.SendPropertyChanged("isActive");
+					this.OnisActiveChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserSettingsProfilePropertie")]
+	public partial class UserSettingsProfilePropertie : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private int _profile_id;
+		
+		private string _propertyName;
+		
+		private System.Data.Linq.Binary _propertyValue;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void Onprofile_idChanging(int value);
+    partial void Onprofile_idChanged();
+    partial void OnpropertyNameChanging(string value);
+    partial void OnpropertyNameChanged();
+    partial void OnpropertyValueChanging(System.Data.Linq.Binary value);
+    partial void OnpropertyValueChanged();
+    #endregion
+		
+		public UserSettingsProfilePropertie()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_profile_id", DbType="Int NOT NULL")]
+		public int profile_id
+		{
+			get
+			{
+				return this._profile_id;
+			}
+			set
+			{
+				if ((this._profile_id != value))
+				{
+					this.Onprofile_idChanging(value);
+					this.SendPropertyChanging();
+					this._profile_id = value;
+					this.SendPropertyChanged("profile_id");
+					this.Onprofile_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_propertyName", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string propertyName
+		{
+			get
+			{
+				return this._propertyName;
+			}
+			set
+			{
+				if ((this._propertyName != value))
+				{
+					this.OnpropertyNameChanging(value);
+					this.SendPropertyChanging();
+					this._propertyName = value;
+					this.SendPropertyChanged("propertyName");
+					this.OnpropertyNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_propertyValue", DbType="VarBinary(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary propertyValue
+		{
+			get
+			{
+				return this._propertyValue;
+			}
+			set
+			{
+				if ((this._propertyValue != value))
+				{
+					this.OnpropertyValueChanging(value);
+					this.SendPropertyChanging();
+					this._propertyValue = value;
+					this.SendPropertyChanged("propertyValue");
+					this.OnpropertyValueChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserSettingsProfile")]
+	public partial class UserSettingsProfile : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _name;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    #endregion
+		
+		public UserSettingsProfile()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
 				}
 			}
 		}

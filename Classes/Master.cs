@@ -4,7 +4,10 @@ using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Columns;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,13 +16,13 @@ namespace Saler_Project.Classes
 {
     public static class Master
     {
-       public class ValueAndID
+        public class ValueAndID
         {
             public int id { get; set; }
             public string name { get; set; }
         }
 
-        public static  List<ValueAndID> prodectTypeList = new List<ValueAndID> {
+        public static List<ValueAndID> prodectTypeList = new List<ValueAndID> {
            new ValueAndID() { id = 0, name = "مخزني" },
            new ValueAndID() { id = 1, name = "خدمي" }
        };
@@ -40,6 +43,7 @@ namespace Saler_Project.Classes
 
         }
 
+
         public static List<ValueAndID> InvoiceTypeList = new List<ValueAndID> {
            new ValueAndID() { id = (int)InvoiceType.Purchase , name = "مشتريات" },
            new ValueAndID() { id = (int)InvoiceType.Sales , name = "مبيعات" },
@@ -55,11 +59,44 @@ namespace Saler_Project.Classes
             SalesReturn,
 
         }
-
-
-        public static void initData(this RepositoryItemGridLookUpEditBase repo, object dataSours,GridColumn column ,GridControl grid)
+        public static List<ValueAndID> WarningLevelsList = new List<ValueAndID> {
+           new ValueAndID() { id = (int)WarningLevels.DoNotEnteript , name = "عدم تداخل" },
+           new ValueAndID() { id =  (int)WarningLevels.ShowWarning, name = "تحذير" },
+           new ValueAndID() { id =  (int)WarningLevels.prevent, name = "منع" }
+       };
+        public enum WarningLevels
         {
-            initData(repo:repo, dataSours:dataSours, column:column, grid:grid,"name", "id");
+            DoNotEnteript,
+            ShowWarning,
+            prevent
+
+        }
+
+        public static List<ValueAndID> PayMethodsList = new List<ValueAndID> {
+           new ValueAndID() { id = (int)PayMethods.Cash , name = "نقدآ" },
+           new ValueAndID() { id =  (int)PayMethods.Credit, name = "اجل" },
+       };
+        public enum PayMethods
+        {
+            Cash,
+            Credit
+
+        }
+
+        public static List<ValueAndID> UserTypeList = new List<ValueAndID> {
+           new ValueAndID() { id = (int)UserType.Admin , name = "مدير نظام" },
+           new ValueAndID() { id =  (int)UserType.User, name = "دخول مخصص" },
+       };
+        public enum UserType
+        {
+            Admin,
+            User,
+
+        }
+
+        public static void initData(this RepositoryItemGridLookUpEditBase repo, object dataSours, GridColumn column, GridControl grid)
+        {
+            initData(repo: repo, dataSours: dataSours, column: column, grid: grid, "name", "id");
         }
         public static void initData(RepositoryItemGridLookUpEditBase repo, object dataSours, GridColumn column, GridControl grid, string DisplayMember, string ValueMember)
         {
@@ -74,11 +111,11 @@ namespace Saler_Project.Classes
             if (grid != null)
                 grid.RepositoryItems.Add(repo);
         }
-        public  static void initData(this LookUpEdit lkp, object dataSours)
+        public static void initData(this LookUpEdit lkp, object dataSours)
         {
             initData(lkp, dataSours, "name", "id");
         }
-       public static void initData(LookUpEdit lkp, object dataSours, string DisplayMember, string ValueMember)
+        public static void initData(LookUpEdit lkp, object dataSours, string DisplayMember, string ValueMember)
         {
             lkp.Properties.DataSource = dataSours;
             lkp.Properties.DisplayMember = DisplayMember;
@@ -101,12 +138,12 @@ namespace Saler_Project.Classes
         {
             get { return "هذا الحقب مطلوب"; }
         }
-            
-                
-                
-        public static bool isTextValid(this TextEdit txt )
+
+
+
+        public static bool isTextValid(this TextEdit txt)
         {
-            if(txt.Text.Trim() == string.Empty)
+            if (txt.Text.Trim() == string.Empty)
             {
                 txt.ErrorText = errorText;
                 return false;
@@ -142,7 +179,7 @@ namespace Saler_Project.Classes
         }
         public static bool isDateValid(this DateEdit dt)
         {
-            if(dt.DateTime.Year < 1950)
+            if (dt.DateTime.Year < 1950)
             {
                 dt.ErrorText = errorText;
                 return false;
@@ -150,7 +187,7 @@ namespace Saler_Project.Classes
             }
             return true;
         }
-       public static string getNextCode(string code)
+        public static string getNextCode(string code)
         {
             if (code == string.Empty || code == null) return "1";
 
@@ -174,6 +211,35 @@ namespace Saler_Project.Classes
             code = code.Insert(index, str3);
 
             return code;
+        }
+        public static T FromByteArray<T>(byte[] data)
+        {
+            if (data == null)
+                return default(T);
+
+            BinaryFormatter formatter = new BinaryFormatter();
+            using (MemoryStream stream = new MemoryStream(data))
+            {
+                return (T)formatter.Deserialize(stream);
+
+            }
+        }
+        public static byte[] GetPropertyValue(string propertyName ,int property_id)
+        {
+            using (var db=new Scr.DBDataContext())
+            {
+                var prop = db.UserSettingsProfileProperties.SingleOrDefault(x => x.profile_id == property_id && x.propertyName == propertyName);
+                if (prop == null)
+                    return null;
+                return prop.propertyValue.ToArray();
+
+            }
+        }
+        public static string GetLineNumber([CallerMemberName] string callName ="")
+        {
+
+            return callName;
+
         }
     }
 
