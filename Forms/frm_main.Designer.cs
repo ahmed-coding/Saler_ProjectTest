@@ -48,6 +48,10 @@
             this.accordionControlElement12 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement2 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement13 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement5 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement24 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement25 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement26 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement6 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement7 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.fluentDesignFormControl1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl();
@@ -56,8 +60,7 @@
             this.accordionControlElement16 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement15 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement17 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement5 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement24 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement27 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fluentDesignFormControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fluentFormDefaultManager1)).BeginInit();
@@ -82,7 +85,8 @@
             this.accordionControlElement10,
             this.accordionControlElement4,
             this.accordionControlElement12,
-            this.accordionControlElement5});
+            this.accordionControlElement5,
+            this.accordionControlElement25});
             this.accordionControl1.Location = new System.Drawing.Point(0, 39);
             this.accordionControl1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.accordionControl1.Name = "accordionControl1";
@@ -225,6 +229,37 @@
             this.accordionControlElement13.Tag = "frm_drawerList";
             this.accordionControlElement13.Text = "قائمة الخزنات";
             // 
+            // accordionControlElement5
+            // 
+            this.accordionControlElement5.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+            this.accordionControlElement24});
+            this.accordionControlElement5.Expanded = true;
+            this.accordionControlElement5.Name = "accordionControlElement5";
+            this.accordionControlElement5.Text = "المشتريات";
+            // 
+            // accordionControlElement24
+            // 
+            this.accordionControlElement24.Name = "accordionControlElement24";
+            this.accordionControlElement24.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlElement24.Tag = "frm_PurchaseInvoice";
+            this.accordionControlElement24.Text = "فاتورة مشتريات جديدة";
+            // 
+            // accordionControlElement25
+            // 
+            this.accordionControlElement25.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+            this.accordionControlElement26,
+            this.accordionControlElement27});
+            this.accordionControlElement25.Expanded = true;
+            this.accordionControlElement25.Name = "accordionControlElement25";
+            this.accordionControlElement25.Text = "الاعدادات";
+            // 
+            // accordionControlElement26
+            // 
+            this.accordionControlElement26.Name = "accordionControlElement26";
+            this.accordionControlElement26.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlElement26.Tag = "frm_user";
+            this.accordionControlElement26.Text = "اضافة مستخدم";
+            // 
             // accordionControlElement6
             // 
             this.accordionControlElement6.Name = "accordionControlElement6";
@@ -286,20 +321,12 @@
             this.accordionControlElement17.Tag = "frm_customerList";
             this.accordionControlElement17.Text = "قائمة العملاء";
             // 
-            // accordionControlElement5
+            // accordionControlElement27
             // 
-            this.accordionControlElement5.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
-            this.accordionControlElement24});
-            this.accordionControlElement5.Expanded = true;
-            this.accordionControlElement5.Name = "accordionControlElement5";
-            this.accordionControlElement5.Text = "المشتريات";
-            // 
-            // accordionControlElement24
-            // 
-            this.accordionControlElement24.Name = "accordionControlElement24";
-            this.accordionControlElement24.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement24.Tag = "frm_PurchaseInvoice";
-            this.accordionControlElement24.Text = "فاتورة مشتريات جديدة";
+            this.accordionControlElement27.Name = "accordionControlElement27";
+            this.accordionControlElement27.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlElement27.Tag = "frm_userList";
+            this.accordionControlElement27.Text = "قائمة المستخدمين";
             // 
             // frm_main
             // 
@@ -355,5 +382,8 @@
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement23;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement5;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement24;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement25;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement26;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement27;
     }
 }

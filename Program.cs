@@ -19,8 +19,12 @@ namespace Saler_Project
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            var frm= new frm_login();
+            frm.ShowDialog();
+
             //Application.Run(new frm_invoice(Classes.Master.InvoiceType.Purchase));
-            Application.Run(new frm_main());
+            Application.Run();
+            //Application.Run(frm_main.Instance);
 
 
 

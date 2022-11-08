@@ -8,11 +8,20 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
+using DevExpress.XtraSplashScreen;
 
 namespace Saler_Project.Forms
 {
     public partial class frm_main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignForm
     {
+        private static frm_main _instance;
+        public static frm_main Instance { get
+            {
+                if (_instance == null)
+                    _instance = new frm_main();
+                return _instance;
+            }
+        }
         public frm_main()
         {
             InitializeComponent();
@@ -34,24 +43,34 @@ namespace Saler_Project.Forms
             switch (name)
             {
                 case "frm_customer":
+                    SplashScreenManager.ShowForm(parentForm: frm, typeof(FormLoad));
                     frm = new frm_customerVendor(true);
                     frm.Show();
+                    SplashScreenManager.CloseForm();
                     break;
                 case "frm_vendor":
+                    SplashScreenManager.ShowForm(parentForm: frm, typeof(FormLoad));
                     frm = new frm_customerVendor(false);
                     frm.Show();
+                    SplashScreenManager.CloseForm();
                     break;
                 case "frm_vendorList":
+                    SplashScreenManager.ShowForm(parentForm: frm, typeof(FormLoad));
                     frm = new frm_customerVendorList(false);
                     frm.Show();
+                    SplashScreenManager.CloseForm();
                     break;
                 case "frm_customerList":
+                    SplashScreenManager.ShowForm(parentForm: frm, typeof(FormLoad));
                     frm = new frm_customerVendorList(true);
                     frm.Show();
+                    SplashScreenManager.CloseForm();
                     break;
                 case "frm_PurchaseInvoice":
+                    SplashScreenManager.ShowForm(parentForm: frm, typeof(FormLoad));
                     frm = new frm_invoice(Classes.Master.InvoiceType.Purchase);
                     frm.Show();
+                    SplashScreenManager.CloseForm();
                     break;
                 default:
 
@@ -66,9 +85,11 @@ namespace Saler_Project.Forms
                             frm = Application.OpenForms[frm.Name];
                         }
                         else
-                            frm.Show();
+                            SplashScreenManager.ShowForm(parentForm: frm, typeof(FormLoad));
+                        frm.Show();
 
                         frm.BringToFront();
+                        SplashScreenManager.CloseForm();
                     }
                         break;
             }

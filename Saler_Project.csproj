@@ -13,6 +13,8 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -36,6 +38,26 @@
   <PropertyGroup>
     <StartupObject>Saler_Project.Program</StartupObject>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Data.Desktop.v21.2, Version=21.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v21.2, Version=21.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -48,6 +70,9 @@
     <Reference Include="DevExpress.XtraLayout.v21.2, Version=21.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraPrinting.v21.2, Version=21.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeList.v21.2, Version=21.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="Liphsoft.Crypto.Argon2, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Liphsoft.Crypto.Argon2.1.0.5\lib\net35\x86\Liphsoft.Crypto.Argon2.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Annotations, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.ComponentModel.Annotations.4.4.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
@@ -79,6 +104,12 @@
     <Compile Include="Classes\Master.cs" />
     <Compile Include="Classes\Session.cs" />
     <Compile Include="Classes\UserSettingsTemplate.cs" />
+    <Compile Include="Forms\FormLoad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormLoad.Designer.cs">
+      <DependentUpon>FormLoad.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frm_customerVendorList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +127,12 @@
     </Compile>
     <Compile Include="Forms\frm_invoice.Designer.cs">
       <DependentUpon>frm_invoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_login.Designer.cs">
+      <DependentUpon>frm_login.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frm_prodect.cs">
       <SubType>Form</SubType>
@@ -163,6 +200,18 @@
     <Compile Include="Forms\frm_user.Designer.cs">
       <DependentUpon>frm_user.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frm_userList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_userList.Designer.cs">
+      <DependentUpon>frm_userList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\StartSplash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\StartSplash.Designer.cs">
+      <DependentUpon>StartSplash.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scr\DB.designer.cs">
@@ -175,6 +224,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SelasDataSet2.xsd</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Forms\FormLoad.resx">
+      <DependentUpon>FormLoad.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_company.resx">
       <DependentUpon>frm_company.cs</DependentUpon>
     </EmbeddedResource>
@@ -192,6 +244,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_invoice.resx">
       <DependentUpon>frm_invoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_login.resx">
+      <DependentUpon>frm_login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_main.resx">
       <DependentUpon>frm_main.cs</DependentUpon>
@@ -217,6 +272,12 @@
     <EmbeddedResource Include="Forms\frm_user.resx">
       <DependentUpon>frm_user.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_userList.resx">
+      <DependentUpon>frm_userList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\StartSplash.resx">
+      <DependentUpon>StartSplash.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -226,6 +287,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -266,5 +328,18 @@
   <ItemGroup>
     <Folder Include="Reporting\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LOGO.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Load.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="packages\Liphsoft.Crypto.Argon2.1.0.5\build\Liphsoft.Crypto.Argon2.targets" Condition="Exists('packages\Liphsoft.Crypto.Argon2.1.0.5\build\Liphsoft.Crypto.Argon2.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Liphsoft.Crypto.Argon2.1.0.5\build\Liphsoft.Crypto.Argon2.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Liphsoft.Crypto.Argon2.1.0.5\build\Liphsoft.Crypto.Argon2.targets'))" />
+  </Target>
 </Project>
