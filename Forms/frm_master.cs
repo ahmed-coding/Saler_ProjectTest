@@ -13,6 +13,7 @@ namespace Saler_Project.Forms
 {
     public partial class frm_master : DevExpress.XtraEditors.XtraForm
     {
+        public bool isNew;
         public string errorText = "هذا الحقل مطلوب";
         public frm_master()
         {

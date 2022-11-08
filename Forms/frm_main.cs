@@ -72,6 +72,12 @@ namespace Saler_Project.Forms
                     frm.Show();
                     SplashScreenManager.CloseForm();
                     break;
+                case "frm_PurchaseInvoiceList":
+                    SplashScreenManager.ShowForm(parentForm: frm, typeof(FormLoad));
+                    frm = new frm_invoiceList(Classes.Master.InvoiceType.Purchase);
+                    frm.Show();
+                    SplashScreenManager.CloseForm();
+                    break;
                 default:
 
                     var ins = Assembly.GetExecutingAssembly().GetTypes().FirstOrDefault(x => x.Name == name);
@@ -85,11 +91,11 @@ namespace Saler_Project.Forms
                             frm = Application.OpenForms[frm.Name];
                         }
                         else
-                            SplashScreenManager.ShowForm(parentForm: frm, typeof(FormLoad));
+                           
                         frm.Show();
-
                         frm.BringToFront();
-                        SplashScreenManager.CloseForm();
+                        
+
                     }
                         break;
             }

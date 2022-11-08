@@ -20,6 +20,10 @@ namespace Saler_Project.Forms
 {
     public partial class frm_invoice : Saler_Project.Forms.frm_master
     {
+
+
+        public static frm_invoice Instance;
+
         Scr.Invoice_Header invoice;
         InvoiceType type;
 
@@ -37,7 +41,27 @@ namespace Saler_Project.Forms
             New();
             
         }
-        
+        public frm_invoice(InvoiceType _type,int id)
+        {
+            type = _type;
+            InitializeComponent();
+            lkpPartType.EditValueChanged += LkpPartType_EditValueChanged;
+            refreshData();
+            using (var db=new Scr.DBDataContext())
+            {
+                invoice= db.Invoice_Headers.SingleOrDefault(x=> x.id ==id);
+                GetData();
+                isNew=false;
+                
+            }
+
+        }
+        public override void Refresh()
+        {
+            base.Refresh();
+        }
+
+
 
         private void frm_invoice_Load(object sender, EventArgs e)
         {

@@ -128,11 +128,23 @@
     <Compile Include="Forms\frm_invoice.Designer.cs">
       <DependentUpon>frm_invoice.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frm_invoiceList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_invoiceList.Designer.cs">
+      <DependentUpon>frm_invoiceList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frm_login.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frm_login.Designer.cs">
       <DependentUpon>frm_login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_masterList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_masterList.Designer.cs">
+      <DependentUpon>frm_masterList.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frm_prodect.cs">
       <SubType>Form</SubType>
@@ -245,6 +257,9 @@
     <EmbeddedResource Include="Forms\frm_invoice.resx">
       <DependentUpon>frm_invoice.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_invoiceList.resx">
+      <DependentUpon>frm_invoiceList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_login.resx">
       <DependentUpon>frm_login.cs</DependentUpon>
     </EmbeddedResource>
@@ -253,6 +268,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_master.resx">
       <DependentUpon>frm_master.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_masterList.resx">
+      <DependentUpon>frm_masterList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_prodect.resx">
       <DependentUpon>frm_prodect.cs</DependentUpon>
